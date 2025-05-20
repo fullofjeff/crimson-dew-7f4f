@@ -54,50 +54,70 @@
       display: block;
     }
 
-    /* make front a positioning context */
+    /* front becomes positioning context */
     .card-face.front {
       position: relative;
     }
 
-    /* front overlays */
+    /* logo */
     .logo-overlay {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       transform-origin: center center;
-
       width: 20%;
       max-width: none;
       height: auto;
-
       z-index: 2;
       pointer-events: none;
     }
-
     .logo-overlay img {
       width: 100%;
       height: auto;
       display: block;
     }
 
+    /* shared corner styling */
     .corner {
       position: absolute;
       height: 10%;
-      width: auto;
       object-fit: contain;
       pointer-events: none;
     }
-    .top-left    { top: 8%;  left: 7.5%; }
-    .top-right   { top: 8%;  right: 6%; }
-    .bot-left    { bottom: 6%; left: 7.5%; }
-    .bot-right   { bottom: 6%; right: 6%; }
+
+    /* individual corner control */
+    .top-left {
+      top: 8%;
+      left: 7.5%;
+      width: 20%;
+      object-position: left center;
+    }
+    .top-right {
+      top: 8%;
+      right: 6%;
+      width: 20%;
+      object-position: right center;
+    }
+    .bot-left {
+      bottom: 6%;
+      left: 7.5%;
+      width: 22%; /* adjust to fix any drop-out issues */
+      object-position: left center;
+    }
+    .bot-right {
+      bottom: 6%;
+      right: 6%;
+      width: 20%;
+      object-position: right center;
+    }
 
     /* back face text & suits */
     .back-text {
       position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%,-50%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       display: flex;
       gap: 0.5rem;
       pointer-events: none;
