@@ -24,7 +24,14 @@
       perspective: 1000px;
     }
 
-    /* card sizing & 3D setup */
+    /* flip on hover (desktop only) */
+    @media (hover: hover) and (pointer: fine) {
+      .card-container:hover .card {
+        transform: rotateY(180deg);
+      }
+    }
+
+    /* card setup */
     .card {
       width: 90vw;
       max-width: 600px;
@@ -34,6 +41,7 @@
       transition: transform 0.6s;
       cursor: pointer;
     }
+
     .card.is-flipped {
       transform: rotateY(180deg);
     }
@@ -44,6 +52,7 @@
       width: 100%; height: 100%;
       backface-visibility: hidden;
     }
+
     .card-face.back {
       transform: rotateY(180deg);
     }
@@ -54,12 +63,10 @@
       display: block;
     }
 
-    /* make front a positioning context */
     .card-face.front {
       position: relative;
     }
 
-    /* logo overlay */
     .logo-overlay {
       position: absolute;
       top: 50%;
@@ -79,7 +86,6 @@
       display: block;
     }
 
-    /* corner base and per-corner customization */
     .corner {
       position: absolute;
       width: auto;
@@ -115,7 +121,6 @@
       object-position: center;
     }
 
-    /* back face text & suits */
     .back-text {
       position: absolute;
       top: 50%;
@@ -125,6 +130,7 @@
       gap: 0.5rem;
       pointer-events: none;
     }
+
     .back-text.desktop { flex-direction: row; }
     .back-text.mobile  { display: none; flex-direction: column; }
 
@@ -152,13 +158,11 @@
       <div class="card-face front">
         <img src="/card-front.webp" alt="Card Front" class="card-bg" />
 
-        <!-- logo overlay -->
         <picture class="logo-overlay">
           <source type="image/webp" srcset="/logo-overlay-rough.webp" />
           <img src="/logo-overlay-rough.svg" alt="Logo" />
         </picture>
 
-        <!-- corner text -->
         <img src="/corner top-left.svg"     class="corner top-left"    alt="" />
         <img src="/corner top-right.svg"    class="corner top-right"   alt="" />
         <img src="/corner bottom-left.svg"  class="corner bot-left"    alt="" />
@@ -169,34 +173,36 @@
       <div class="card-face back">
         <img src="/card-back.webp" alt="Card Back" class="card-bg" />
 
-        <!-- desktop horizontal -->
         <div class="back-text desktop">
-          <picture><source type="image/webp" srcset="/suit-spade.webp"><img src="/suit-spade.svg"   alt=""       /></picture>
-          <picture><source type="image/webp" srcset="/wonder.webp">  <img src="/wonder.svg"       alt="WONDER"  /></picture>
-          <picture><source type="image/webp" srcset="/suit-diamond.webp"><img src="/suit-diamond.svg" alt=""     /></picture>
-          <picture><source type="image/webp" srcset="/dream.webp">   <img src="/dream.svg"        alt="DREAM"   /></picture>
-          <picture><source type="image/webp" srcset="/suit-club.webp"><img src="/suit-club.svg"     alt=""     /></picture>
-          <picture><source type="image/webp" srcset="/believe.webp"> <img src="/believe.svg"      alt="BELIEVE" /></picture>
-          <picture><source type="image/webp" srcset="/suit-heart.webp"><img src="/suit-heart.svg"   alt=""     /></picture>
+          <picture><source type="image/webp" srcset="/suit-spade.webp"><img src="/suit-spade.svg" alt="" /></picture>
+          <picture><source type="image/webp" srcset="/wonder.webp"><img src="/wonder.svg" alt="WONDER" /></picture>
+          <picture><source type="image/webp" srcset="/suit-diamond.webp"><img src="/suit-diamond.svg" alt="" /></picture>
+          <picture><source type="image/webp" srcset="/dream.webp"><img src="/dream.svg" alt="DREAM" /></picture>
+          <picture><source type="image/webp" srcset="/suit-club.webp"><img src="/suit-club.svg" alt="" /></picture>
+          <picture><source type="image/webp" srcset="/believe.webp"><img src="/believe.svg" alt="BELIEVE" /></picture>
+          <picture><source type="image/webp" srcset="/suit-heart.webp"><img src="/suit-heart.svg" alt="" /></picture>
         </div>
 
-        <!-- mobile vertical -->
         <div class="back-text mobile">
-          <picture><source type="image/webp" srcset="/suit-spade.webp"><img src="/suit-spade.svg"   alt=""       /></picture>
-          <picture><source type="image/webp" srcset="/wonder.webp">  <img src="/wonder.svg"       alt="WONDER"  /></picture>
-          <picture><source type="image/webp" srcset="/suit-diamond.webp"><img src="/suit-diamond.svg" alt=""     /></picture>
-          <picture><source type="image/webp" srcset="/dream.webp">   <img src="/dream.svg"        alt="DREAM"   /></picture>
-          <picture><source type="image/webp" srcset="/suit-club.webp"><img src="/suit-club.svg"     alt=""     /></picture>
-          <picture><source type="image/webp" srcset="/believe.webp"> <img src="/believe.svg"      alt="BELIEVE" /></picture>
-          <picture><source type="image/webp" srcset="/suit-heart.webp"><img src="/suit-heart.svg"   alt=""     /></picture>
+          <picture><source type="image/webp" srcset="/suit-spade.webp"><img src="/suit-spade.svg" alt="" /></picture>
+          <picture><source type="image/webp" srcset="/wonder.webp"><img src="/wonder.svg" alt="WONDER" /></picture>
+          <picture><source type="image/webp" srcset="/suit-diamond.webp"><img src="/suit-diamond.svg" alt="" /></picture>
+          <picture><source type="image/webp" srcset="/dream.webp"><img src="/dream.svg" alt="DREAM" /></picture>
+          <picture><source type="image/webp" srcset="/suit-club.webp"><img src="/suit-club.svg" alt="" /></picture>
+          <picture><source type="image/webp" srcset="/believe.webp"><img src="/believe.svg" alt="BELIEVE" /></picture>
+          <picture><source type="image/webp" srcset="/suit-heart.webp"><img src="/suit-heart.svg" alt="" /></picture>
         </div>
       </div>
     </div>
   </div>
 
   <script>
-    document.getElementById('card')
-      .addEventListener('click', e => e.currentTarget.classList.toggle('is-flipped'));
+    // Enable tap-to-flip only on touch-capable devices
+    if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
+      document.getElementById('card').addEventListener('click', function () {
+        this.classList.toggle('is-flipped');
+      });
+    }
   </script>
 </body>
 </html>
