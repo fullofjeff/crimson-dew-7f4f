@@ -67,7 +67,7 @@
       transform: translate(-50%, -50%);
       transform-origin: center center;
 
-      width: 25%;       /* ← exactly 50% of card width */
+      width: 20%;       /* ← exactly 50% of card width */
       max-width: none;
       height: auto;
 
@@ -82,7 +82,9 @@
 
     .corner {
       position: absolute;
-      width: 25%;
+      height: 10%;
+      width: auto;
+      object-fit: contain;
       pointer-events: none;
     }
     .top-left    { top: 5%;  left: 5%; }
