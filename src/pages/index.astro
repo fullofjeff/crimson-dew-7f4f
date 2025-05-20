@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Coming Soon</title>
   <style>
-    /* reset */
     html, body {
       margin: 0; padding: 0;
       width: 100%; height: 100%;
@@ -15,7 +14,6 @@
       background: #f5f5f5;
     }
 
-    /* center & perspective */
     .card-container {
       display: flex;
       justify-content: center;
@@ -24,14 +22,7 @@
       perspective: 1000px;
     }
 
-    /* flip on hover (desktop only) */
-    @media (hover: hover) and (pointer: fine) {
-      .card-container:hover .card {
-        transform: rotateY(180deg);
-      }
-    }
-
-    /* card setup */
+    /* Default card flip behavior (manual click-based) */
     .card {
       width: 90vw;
       max-width: 600px;
@@ -44,6 +35,13 @@
 
     .card.is-flipped {
       transform: rotateY(180deg);
+    }
+
+    /* Enable hover only if not manually flipped */
+    @media (hover: hover) and (pointer: fine) {
+      .card-container:not(.manual-flip):hover .card {
+        transform: rotateY(180deg);
+      }
     }
 
     .card-face {
@@ -97,28 +95,24 @@
       height: 7.5%;
       top: 9%;
       left: 8%;
-      object-position: center;
     }
 
     .top-right {
       height: 7.5%;
       top: 9%;
       right: 7%;
-      object-position: center;
     }
 
     .bot-left {
       height: 8.8%;
       bottom: 8%;
       left: 8%;
-      object-position: center bottom;
     }
 
     .bot-right {
       height: 8.8%;
       bottom: 8%;
       right: 7%;
-      object-position: center;
     }
 
     .back-text {
@@ -152,17 +146,15 @@
   </style>
 </head>
 <body>
-  <div class="card-container">
+  <div class="card-container" id="card-container">
     <div class="card" id="card">
       <!-- FRONT -->
       <div class="card-face front">
         <img src="/card-front.webp" alt="Card Front" class="card-bg" />
-
         <picture class="logo-overlay">
           <source type="image/webp" srcset="/logo-overlay-rough.webp" />
           <img src="/logo-overlay-rough.svg" alt="Logo" />
         </picture>
-
         <img src="/corner top-left.svg"     class="corner top-left"    alt="" />
         <img src="/corner top-right.svg"    class="corner top-right"   alt="" />
         <img src="/corner bottom-left.svg"  class="corner bot-left"    alt="" />
@@ -172,7 +164,6 @@
       <!-- BACK -->
       <div class="card-face back">
         <img src="/card-back.webp" alt="Card Back" class="card-bg" />
-
         <div class="back-text desktop">
           <picture><source type="image/webp" srcset="/suit-spade.webp"><img src="/suit-spade.svg" alt="" /></picture>
           <picture><source type="image/webp" srcset="/wonder.webp"><img src="/wonder.svg" alt="WONDER" /></picture>
@@ -182,7 +173,6 @@
           <picture><source type="image/webp" srcset="/believe.webp"><img src="/believe.svg" alt="BELIEVE" /></picture>
           <picture><source type="image/webp" srcset="/suit-heart.webp"><img src="/suit-heart.svg" alt="" /></picture>
         </div>
-
         <div class="back-text mobile">
           <picture><source type="image/webp" srcset="/suit-spade.webp"><img src="/suit-spade.svg" alt="" /></picture>
           <picture><source type="image/webp" srcset="/wonder.webp"><img src="/wonder.svg" alt="WONDER" /></picture>
@@ -197,12 +187,17 @@
   </div>
 
   <script>
-    // Enable tap-to-flip only on touch-capable devices
-    if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
-      document.getElementById('card').addEventListener('click', function () {
-        this.classList.toggle('is-flipped');
-      });
-    }
+    const card = document.getElementById('card');
+    const container = document.getElementById('card-container');
+
+    container.addEventListener('click', () => {
+      const flipped = card.classList.toggle('is-flipped');
+      container.classList.toggle('manual-flip', flipped);
+    });
+
+    container.addEventListener('mouseleave', () => {
+      container.classList.remove('manual-flip');
+    });
   </script>
 </body>
 </html>
