@@ -54,12 +54,12 @@
       display: block;
     }
 
-    /* front becomes positioning context */
+    /* make front a positioning context */
     .card-face.front {
       position: relative;
     }
 
-    /* logo */
+    /* logo overlay */
     .logo-overlay {
       position: absolute;
       top: 50%;
@@ -72,44 +72,47 @@
       z-index: 2;
       pointer-events: none;
     }
+
     .logo-overlay img {
       width: 100%;
       height: auto;
       display: block;
     }
 
-    /* shared corner styling */
+    /* corner base and per-corner customization */
     .corner {
       position: absolute;
-      height: 10%;
+      width: auto;
       object-fit: contain;
       pointer-events: none;
     }
 
-    /* individual corner control */
     .top-left {
+      height: 3.2%;
       top: 8%;
       left: 7.5%;
-      width: 20%;
-      object-position: left center;
+      object-position: center;
     }
+
     .top-right {
+      height: 2.5%;
       top: 8%;
       right: 6%;
-      width: 20%;
-      object-position: right center;
+      object-position: center;
     }
+
     .bot-left {
+      height: 4.0%;
       bottom: 6%;
       left: 7.5%;
-      width: 22%; /* adjust to fix any drop-out issues */
-      object-position: left center;
+      object-position: center bottom;
     }
+
     .bot-right {
+      height: 3.2%;
       bottom: 6%;
       right: 6%;
-      width: 20%;
-      object-position: right center;
+      object-position: center;
     }
 
     /* back face text & suits */
@@ -134,7 +137,6 @@
       }
     }
 
-    /* ensure picture imgs scale */
     .back-text picture,
     .back-text img {
       display: block;
