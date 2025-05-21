@@ -6,20 +6,17 @@
   <title>Coming Soon</title>
   <style>
     html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      overflow: hidden;
       background: #f5f5f5;
-      overflow: auto;
     }
 
     .card-container {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       perspective: 1000px;
     }
 
@@ -39,13 +36,9 @@
 
     .card-face {
       position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       backface-visibility: hidden;
-      border-radius: 16px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     }
 
     .card-face.back {
@@ -53,11 +46,9 @@
     }
 
     .card-bg {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover;
       display: block;
-      border-radius: 16px;
     }
 
     .card-face.front {
@@ -69,7 +60,10 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      transform-origin: center center;
       width: 20%;
+      max-width: none;
+      height: auto;
       z-index: 2;
       pointer-events: none;
     }
@@ -87,29 +81,10 @@
       pointer-events: none;
     }
 
-    .top-left {
-      height: 7.5%;
-      top: 9%;
-      left: 8%;
-    }
-
-    .top-right {
-      height: 7.5%;
-      top: 9%;
-      right: 7%;
-    }
-
-    .bot-left {
-      height: 8.8%;
-      bottom: 8%;
-      left: 8%;
-    }
-
-    .bot-right {
-      height: 8.8%;
-      bottom: 8%;
-      right: 7%;
-    }
+    .top-left  { height: 7.5%; top: 9%; left: 8%; }
+    .top-right { height: 7.5%; top: 9%; right: 7%; }
+    .bot-left  { height: 8.8%; bottom: 8%; left: 8%; }
+    .bot-right { height: 8.8%; bottom: 8%; right: 7%; }
 
     .back-text {
       position: absolute;
@@ -121,26 +96,15 @@
       pointer-events: none;
     }
 
-    .back-text.desktop {
-      flex-direction: row;
-    }
-
-    .back-text.mobile {
-      display: none;
-      flex-direction: column;
-    }
+    .back-text.desktop { flex-direction: row; }
+    .back-text.mobile  { display: none; flex-direction: column; }
 
     @media (max-width: 600px) {
-      .back-text.desktop {
-        display: none;
-      }
-      .back-text.mobile {
-        display: flex;
-      }
+      .back-text.desktop { display: none; }
+      .back-text.mobile  { display: flex; }
       .card {
-        width: 70vw;
-        max-width: 350px;
         aspect-ratio: 1006 / 1597;
+        max-width: 400px;
       }
     }
 
@@ -151,11 +115,15 @@
       height: auto;
     }
 
-    /* Fix scaling issue on mobile portrait */
+    /* Portrait mobile fix: rotate and scale down the entire card */
     @media (max-width: 768px) and (max-aspect-ratio: 3/4) {
       .card {
-        transform: rotateY(180deg) scale(0.85);
-        margin: auto;
+        transform: rotate(90deg) scale(0.75);
+        transform-origin: center center;
+      }
+
+      .card.is-flipped {
+        transform: rotate(270deg) scale(0.75);
       }
     }
   </style>
@@ -170,32 +138,32 @@
           <source type="image/webp" srcset="/logo-overlay-rough.webp" />
           <img src="/logo-overlay-rough.svg" alt="Logo" />
         </picture>
-        <img src="/corner top-left.svg" class="corner top-left" alt="" />
-        <img src="/corner top-right.svg" class="corner top-right" alt="" />
-        <img src="/corner bottom-left.svg" class="corner bot-left" alt="" />
-        <img src="/corner bottom-right.svg" class="corner bot-right" alt="" />
+        <img src="/corner top-left.svg"     class="corner top-left"    alt="" />
+        <img src="/corner top-right.svg"    class="corner top-right"   alt="" />
+        <img src="/corner bottom-left.svg"  class="corner bot-left"    alt="" />
+        <img src="/corner bottom-right.svg" class="corner bot-right"   alt="" />
       </div>
 
       <!-- BACK -->
       <div class="card-face back">
         <img src="/card-back.webp" alt="Card Back" class="card-bg" />
         <div class="back-text desktop">
-          <picture><source type="image/webp" srcset="/suit-spade.webp"><img src="/suit-spade.svg" /></picture>
+          <picture><source type="image/webp" srcset="/suit-spade.webp"><img src="/suit-spade.svg" alt="" /></picture>
           <picture><source type="image/webp" srcset="/wonder.webp"><img src="/wonder.svg" alt="WONDER" /></picture>
-          <picture><source type="image/webp" srcset="/suit-diamond.webp"><img src="/suit-diamond.svg" /></picture>
+          <picture><source type="image/webp" srcset="/suit-diamond.webp"><img src="/suit-diamond.svg" alt="" /></picture>
           <picture><source type="image/webp" srcset="/dream.webp"><img src="/dream.svg" alt="DREAM" /></picture>
-          <picture><source type="image/webp" srcset="/suit-club.webp"><img src="/suit-club.svg" /></picture>
+          <picture><source type="image/webp" srcset="/suit-club.webp"><img src="/suit-club.svg" alt="" /></picture>
           <picture><source type="image/webp" srcset="/believe.webp"><img src="/believe.svg" alt="BELIEVE" /></picture>
-          <picture><source type="image/webp" srcset="/suit-heart.webp"><img src="/suit-heart.svg" /></picture>
+          <picture><source type="image/webp" srcset="/suit-heart.webp"><img src="/suit-heart.svg" alt="" /></picture>
         </div>
         <div class="back-text mobile">
-          <picture><source type="image/webp" srcset="/suit-spade.webp"><img src="/suit-spade.svg" /></picture>
+          <picture><source type="image/webp" srcset="/suit-spade.webp"><img src="/suit-spade.svg" alt="" /></picture>
           <picture><source type="image/webp" srcset="/wonder.webp"><img src="/wonder.svg" alt="WONDER" /></picture>
-          <picture><source type="image/webp" srcset="/suit-diamond.webp"><img src="/suit-diamond.svg" /></picture>
+          <picture><source type="image/webp" srcset="/suit-diamond.webp"><img src="/suit-diamond.svg" alt="" /></picture>
           <picture><source type="image/webp" srcset="/dream.webp"><img src="/dream.svg" alt="DREAM" /></picture>
-          <picture><source type="image/webp" srcset="/suit-club.webp"><img src="/suit-club.svg" /></picture>
+          <picture><source type="image/webp" srcset="/suit-club.webp"><img src="/suit-club.svg" alt="" /></picture>
           <picture><source type="image/webp" srcset="/believe.webp"><img src="/believe.svg" alt="BELIEVE" /></picture>
-          <picture><source type="image/webp" srcset="/suit-heart.webp"><img src="/suit-heart.svg" /></picture>
+          <picture><source type="image/webp" srcset="/suit-heart.webp"><img src="/suit-heart.svg" alt="" /></picture>
         </div>
       </div>
     </div>
@@ -214,7 +182,7 @@
     });
 
     card.addEventListener('click', () => {
-      clicked = true;
+      clicked = !clicked;
       card.classList.toggle('is-flipped');
     });
   </script>
