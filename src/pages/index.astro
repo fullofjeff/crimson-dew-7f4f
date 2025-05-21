@@ -32,6 +32,10 @@
       cursor: pointer;
     }
 
+    .card.is-flipped {
+      transform: rotateY(180deg);
+    }
+
     .card-face {
       position: absolute;
       top: 0; left: 0;
@@ -111,25 +115,12 @@
       max-width: 100%;
       height: auto;
     }
-
-    /* Hover or temporary JS-based flip */
-    @media (hover: hover) and (pointer: fine) {
-      .card-container:hover .card,
-      .card-container.flip .card {
-        transform: rotateY(180deg);
-      }
-    }
-
-    @media (hover: none) {
-      .card-container.flip .card {
-        transform: rotateY(180deg);
-      }
-    }
   </style>
 </head>
 <body>
-  <div class="card-container" id="card-container">
+  <div class="card-container">
     <div class="card" id="card">
+      <!-- FRONT -->
       <div class="card-face front">
         <img src="/card-front.webp" alt="Card Front" class="card-bg" />
         <picture class="logo-overlay">
@@ -142,6 +133,7 @@
         <img src="/corner bottom-right.svg" class="corner bot-right"   alt="" />
       </div>
 
+      <!-- BACK -->
       <div class="card-face back">
         <img src="/card-back.webp" alt="Card Back" class="card-bg" />
         <div class="back-text desktop">
@@ -167,11 +159,23 @@
   </div>
 
   <script>
-    const container = document.getElementById('card-container');
+    const card = document.getElementById('card');
 
-    container.addEventListener('click', () => {
-      container.classList.add('flip');
-      setTimeout(() => container.classList.remove('flip'), 800); // match the CSS transition
+    let lastMove = 0;
+    card.addEventListener('mousemove', (e) => {
+      const now = Date.now();
+      if (now - lastMove < 50) {
+        card.classList.add('is-flipped');
+      }
+      lastMove = now;
+    });
+
+    card.addEventListener('click', () => {
+      card.classList.add('is-flipped');
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.classList.remove('is-flipped');
     });
   </script>
 </body>
