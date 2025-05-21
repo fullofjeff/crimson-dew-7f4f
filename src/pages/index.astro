@@ -139,9 +139,11 @@
       height: auto;
     }
 
+    /* Flip + scale card for vertical portrait mobile */
     @media (max-width: 768px) and (max-aspect-ratio: 3/4) {
       .card {
         transform: rotateY(180deg) scale(0.75);
+        transform-origin: center center;
       }
     }
   </style>
@@ -202,6 +204,11 @@
     card.addEventListener('click', () => {
       clicked = true;
       card.classList.toggle('is-flipped');
+    });
+
+    // Reset `clicked` once the user fully exits and re-enters
+    card.addEventListener('mouseleave', () => {
+      clicked = false;
     });
   </script>
 </body>
