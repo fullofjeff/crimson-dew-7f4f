@@ -12,27 +12,28 @@
       padding: 0;
       width: 100%;
       height: 100%;
-      overflow: hidden;
       background: #f5f5f5;
+      overflow: hidden;
     }
 
     .card-container {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
+      padding: 2vh;
+      box-sizing: border-box;
       perspective: 1000px;
     }
 
     .card {
-      width: 90vw;
+      width: 100%;
       max-width: 600px;
       aspect-ratio: 1597 / 1006;
       position: relative;
       transform-style: preserve-3d;
       transition: transform 0.6s;
-      cursor: pointer;
     }
 
     .card.is-flipped {
@@ -70,7 +71,6 @@
       transform: translate(-50%, -50%);
       transform-origin: center center;
       width: 20%;
-      max-width: none;
       height: auto;
       z-index: 2;
       pointer-events: none;
@@ -111,8 +111,8 @@
       .back-text.desktop { display: none; }
       .back-text.mobile  { display: flex; }
       .card {
+        max-width: 90vw;
         aspect-ratio: 1006 / 1597;
-        max-width: 400px;
       }
     }
 
@@ -123,11 +123,11 @@
       height: auto;
     }
 
-    /* ✅ Rotate just the BACK image on portrait mobile */
+    /* ✅ Rotate back image ONLY on portrait mobile */
     @media (max-width: 768px) and (max-aspect-ratio: 3/4) {
       .card-face.back .card-bg {
-        transform: rotate(90deg) scale(0.7);
-        transform-origin: center;
+        transform: rotate(90deg) scale(0.85);
+        transform-origin: center center;
       }
     }
   </style>
@@ -152,22 +152,22 @@
       <div class="card-face back">
         <img src="/card-back.webp" alt="Card Back" class="card-bg" />
         <div class="back-text desktop">
-          <picture><source type="image/webp" srcset="/suit-spade.webp"><img src="/suit-spade.svg" alt="" /></picture>
-          <picture><source type="image/webp" srcset="/wonder.webp"><img src="/wonder.svg" alt="WONDER" /></picture>
-          <picture><source type="image/webp" srcset="/suit-diamond.webp"><img src="/suit-diamond.svg" alt="" /></picture>
-          <picture><source type="image/webp" srcset="/dream.webp"><img src="/dream.svg" alt="DREAM" /></picture>
-          <picture><source type="image/webp" srcset="/suit-club.webp"><img src="/suit-club.svg" alt="" /></picture>
-          <picture><source type="image/webp" srcset="/believe.webp"><img src="/believe.svg" alt="BELIEVE" /></picture>
-          <picture><source type="image/webp" srcset="/suit-heart.webp"><img src="/suit-heart.svg" alt="" /></picture>
+          <picture><img src="/suit-spade.svg" alt="" /></picture>
+          <picture><img src="/wonder.svg" alt="WONDER" /></picture>
+          <picture><img src="/suit-diamond.svg" alt="" /></picture>
+          <picture><img src="/dream.svg" alt="DREAM" /></picture>
+          <picture><img src="/suit-club.svg" alt="" /></picture>
+          <picture><img src="/believe.svg" alt="BELIEVE" /></picture>
+          <picture><img src="/suit-heart.svg" alt="" /></picture>
         </div>
         <div class="back-text mobile">
-          <picture><source type="image/webp" srcset="/suit-spade.webp"><img src="/suit-spade.svg" alt="" /></picture>
-          <picture><source type="image/webp" srcset="/wonder.webp"><img src="/wonder.svg" alt="WONDER" /></picture>
-          <picture><source type="image/webp" srcset="/suit-diamond.webp"><img src="/suit-diamond.svg" alt="" /></picture>
-          <picture><source type="image/webp" srcset="/dream.webp"><img src="/dream.svg" alt="DREAM" /></picture>
-          <picture><source type="image/webp" srcset="/suit-club.webp"><img src="/suit-club.svg" alt="" /></picture>
-          <picture><source type="image/webp" srcset="/believe.webp"><img src="/believe.svg" alt="BELIEVE" /></picture>
-          <picture><source type="image/webp" srcset="/suit-heart.webp"><img src="/suit-heart.svg" alt="" /></picture>
+          <picture><img src="/suit-spade.svg" alt="" /></picture>
+          <picture><img src="/wonder.svg" alt="WONDER" /></picture>
+          <picture><img src="/suit-diamond.svg" alt="" /></picture>
+          <picture><img src="/dream.svg" alt="DREAM" /></picture>
+          <picture><img src="/suit-club.svg" alt="" /></picture>
+          <picture><img src="/believe.svg" alt="BELIEVE" /></picture>
+          <picture><img src="/suit-heart.svg" alt="" /></picture>
         </div>
       </div>
     </div>
