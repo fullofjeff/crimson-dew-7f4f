@@ -1,5 +1,3 @@
----
----
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +27,6 @@
       position: relative;
       transform-style: preserve-3d;
       transition: transform 0.6s;
-      cursor: pointer;
     }
 
     .card.is-flipped {
@@ -72,6 +69,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      transform-origin: center center;
       width: 20%;
       max-width: none;
       height: auto;
@@ -85,7 +83,6 @@
       display: block;
     }
 
-    /* INDIVIDUAL CORNER HEIGHTS (adjust per corner) */
     .corner {
       position: absolute;
       width: auto;
@@ -93,10 +90,10 @@
       pointer-events: none;
     }
 
-    .corner.top-left  { height: 7.5%; top: 9%; left: 8%; }
-    .corner.top-right { height: 7.5%; top: 9%; right: 7%; }
-    .corner.bot-left  { height: 8.8%; bottom: 8%; left: 8%; }
-    .corner.bot-right { height: 8.8%; bottom: 8%; right: 7%; }
+    .top-left  { height: 7.5%; top: 9%; left: 8%; }
+    .top-right { height: 7.5%; top: 9%; right: 7%; }
+    .bot-left  { height: 8.8%; bottom: 8%; left: 8%; }
+    .bot-right { height: 8.8%; bottom: 8%; right: 7%; }
 
     .back-text {
       position: absolute;
@@ -120,19 +117,28 @@
     }
 
     @media (max-width: 600px) {
+      .card {
+        width: 90vw;
+        max-width: 90vw;
+      }
+
       .back-text.desktop { display: none; }
       .back-text.mobile  { display: flex; }
 
-      /* Example: scale mobile back elements individually */
-      .back-text.mobile img {
-        width: 70%;
-        margin: 0 auto;
-      }
+      /* MOBILE SIZING — corner overlays */
+      .top-left  { height: 6%; }
+      .top-right { height: 6%; }
+      .bot-left  { height: 6.5%; }
+      .bot-right { height: 6.5%; }
 
-      /* Example: scale W O N D E R more than others if needed */
-      .back-text.mobile img:nth-child(2) {
-        width: 80%;
-      }
+      /* MOBILE SIZING — individual suits/text */
+      .back-text.mobile picture:nth-child(1) img { width: 20%; } /* ♠ */
+      .back-text.mobile picture:nth-child(2) img { width: 50%; } /* WONDER */
+      .back-text.mobile picture:nth-child(3) img { width: 20%; } /* ♦ */
+      .back-text.mobile picture:nth-child(4) img { width: 50%; } /* DREAM */
+      .back-text.mobile picture:nth-child(5) img { width: 20%; } /* ♣ */
+      .back-text.mobile picture:nth-child(6) img { width: 50%; } /* BELIEVE */
+      .back-text.mobile picture:nth-child(7) img { width: 20%; } /* ♥ */
     }
   </style>
 </head>
@@ -179,22 +185,7 @@
 
   <script>
     const card = document.getElementById('card');
-    let clicked = false;
 
-    card.addEventListener('mouseenter', () => {
-      if (!clicked) card.classList.add('is-flipped');
-    });
-
-    card.addEventListener('mouseleave', () => {
-      if (!clicked) card.classList.remove('is-flipped');
-    });
-
-    card.addEventListener('click', () => {
-      clicked = !clicked;
-      card.classList.toggle('is-flipped');
-    });
-
-    // Rotate background on portrait mobile
     function updateOrientation() {
       const isPortrait = window.innerHeight > window.innerWidth;
       card.classList.toggle('rotate-mobile', isPortrait);
