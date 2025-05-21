@@ -36,6 +36,10 @@
       transform: rotateY(180deg);
     }
 
+    .card.rotate-mobile {
+      aspect-ratio: 1006 / 1597;
+    }
+
     .card-face {
       position: absolute;
       top: 0; left: 0;
@@ -48,10 +52,15 @@
     }
 
     .card-bg {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .card.rotate-mobile .card-bg {
+      transform: rotate(90deg) scale(1);
+      object-fit: contain;
     }
 
     .card-face.front {
@@ -76,6 +85,7 @@
       display: block;
     }
 
+    /* INDIVIDUAL CORNER HEIGHTS (adjust per corner) */
     .corner {
       position: absolute;
       width: auto;
@@ -96,48 +106,33 @@
       display: flex;
       gap: 0.5rem;
       pointer-events: none;
+      z-index: 2;
     }
 
     .back-text.desktop { flex-direction: row; }
     .back-text.mobile  { display: none; flex-direction: column; }
-
-    @media (max-width: 600px) {
-      .back-text.desktop { display: none; }
-      .back-text.mobile  { display: flex; }
-
-      .card {
-        aspect-ratio: 1006 / 1597;
-        max-width: 400px;
-        transform: rotate(90deg);
-      }
-
-      .card.is-flipped {
-        transform: rotate(90deg) rotateY(180deg);
-      }
-
-      /* Scale mobile corners */
-      .corner.top-left  { height: 6%; }
-      .corner.top-right { height: 6%; }
-      .corner.bot-left  { height: 7.5%; }
-      .corner.bot-right { height: 7.5%; }
-
-      /* Scale mobile logo */
-      .logo-overlay {
-        width: 15%;
-      }
-
-      /* Scale back mobile words/suits */
-      .back-text.mobile img {
-        width: 70%;
-        margin: 0 auto;
-      }
-    }
 
     .back-text picture,
     .back-text img {
       display: block;
       max-width: 100%;
       height: auto;
+    }
+
+    @media (max-width: 600px) {
+      .back-text.desktop { display: none; }
+      .back-text.mobile  { display: flex; }
+
+      /* Example: scale mobile back elements individually */
+      .back-text.mobile img {
+        width: 70%;
+        margin: 0 auto;
+      }
+
+      /* Example: scale W O N D E R more than others if needed */
+      .back-text.mobile img:nth-child(2) {
+        width: 80%;
+      }
     }
   </style>
 </head>
@@ -198,6 +193,16 @@
       clicked = !clicked;
       card.classList.toggle('is-flipped');
     });
+
+    // Rotate background on portrait mobile
+    function updateOrientation() {
+      const isPortrait = window.innerHeight > window.innerWidth;
+      card.classList.toggle('rotate-mobile', isPortrait);
+    }
+
+    window.addEventListener('resize', updateOrientation);
+    window.addEventListener('orientationchange', updateOrientation);
+    updateOrientation();
   </script>
 </body>
 </html>
