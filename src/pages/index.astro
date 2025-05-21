@@ -121,14 +121,18 @@
       .back-text.desktop { display: none; }
       .back-text.mobile  { display: flex; }
 
-      /* MOBILE OVERRIDES FOR SCALE CONTROL */
-      .top-left  { height: 2.5%; }
+      /* 🔧 INDIVIDUAL CORNER SCALE ADJUSTMENTS */
+      .top-left  { height: 4.5%; }
       .top-right { height: 2.5%; }
-      .bot-left  { height: 3.5%; }
-      .bot-right { height: 3.5%; }
+      .bot-left  { height: 2.5%; }
+      .bot-right { height: 5.5%; }
 
+      /* 🔧 LOGO SIZE ADJUSTMENT ON MOBILE */
+      .logo-overlay { width: 15%; }
+
+      /* 🔧 BACK TEXT SIZE ON MOBILE */
       .back-text.mobile picture img {
-        width: 15%;
+        width: 12%;
         margin: 0 auto;
       }
     }
@@ -137,6 +141,7 @@
 <body>
   <div class="card-container">
     <div class="card" id="card">
+      <!-- FRONT -->
       <div class="card-face front">
         <img src="/card-front.webp" alt="Card Front" class="card-bg" />
         <picture class="logo-overlay">
@@ -149,6 +154,7 @@
         <img src="/corner bottom-right.svg" class="corner bot-right"   alt="" />
       </div>
 
+      <!-- BACK -->
       <div class="card-face back">
         <img src="/card-back.webp" alt="Card Back" class="card-bg" />
         <div class="back-text desktop">
