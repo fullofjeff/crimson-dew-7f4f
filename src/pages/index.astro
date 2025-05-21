@@ -22,13 +22,13 @@
       align-items: center;
       width: 100vw;
       height: 100vh;
-      padding: 2vh;
+      padding: 0;
       box-sizing: border-box;
       perspective: 1000px;
     }
 
     .card {
-      width: 100%;
+      width: 90vw;
       max-width: 600px;
       aspect-ratio: 1597 / 1006;
       position: relative;
@@ -71,6 +71,7 @@
       transform: translate(-50%, -50%);
       transform-origin: center center;
       width: 20%;
+      max-width: none;
       height: auto;
       z-index: 2;
       pointer-events: none;
@@ -111,7 +112,8 @@
       .back-text.desktop { display: none; }
       .back-text.mobile  { display: flex; }
       .card {
-        max-width: 90vw;
+        width: 90vw;
+        max-width: none;
         aspect-ratio: 1006 / 1597;
       }
     }
@@ -123,11 +125,13 @@
       height: auto;
     }
 
-    /* ✅ Rotate back image ONLY on portrait mobile */
+    /* Mobile-specific background rotation */
     @media (max-width: 768px) and (max-aspect-ratio: 3/4) {
       .card-face.back .card-bg {
-        transform: rotate(90deg) scale(0.85);
-        transform-origin: center center;
+        content: url('/card-back-portrait.webp');
+      }
+      .card-face.front .card-bg {
+        content: url('/card-front-portrait.webp');
       }
     }
   </style>
