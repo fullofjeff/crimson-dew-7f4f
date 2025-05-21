@@ -126,8 +126,9 @@
       .back-text.desktop { display: none; }
       .back-text.mobile  { display: flex; }
       .card {
+        width: 70vw;
+        max-width: 350px;
         aspect-ratio: 1006 / 1597;
-        max-width: 400px;
       }
     }
 
@@ -138,10 +139,9 @@
       height: auto;
     }
 
-    /* ✅ Flip on mobile portrait */
     @media (max-width: 768px) and (max-aspect-ratio: 3/4) {
       .card {
-        transform: rotateY(180deg);
+        transform: rotateY(180deg) scale(0.75);
       }
     }
   </style>
