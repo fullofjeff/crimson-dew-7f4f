@@ -22,7 +22,6 @@
       perspective: 1000px;
     }
 
-    /* Default card flip behavior (manual click-based) */
     .card {
       width: 90vw;
       max-width: 600px;
@@ -31,17 +30,6 @@
       transform-style: preserve-3d;
       transition: transform 0.6s;
       cursor: pointer;
-    }
-
-    .card.is-flipped {
-      transform: rotateY(180deg);
-    }
-
-    /* Enable hover only if not manually flipped */
-    @media (hover: hover) and (pointer: fine) {
-      .card-container:not(.manual-flip):hover .card {
-        transform: rotateY(180deg);
-      }
     }
 
     .card-face {
@@ -91,34 +79,14 @@
       pointer-events: none;
     }
 
-    .top-left {
-      height: 7.5%;
-      top: 9%;
-      left: 8%;
-    }
-
-    .top-right {
-      height: 7.5%;
-      top: 9%;
-      right: 7%;
-    }
-
-    .bot-left {
-      height: 8.8%;
-      bottom: 8%;
-      left: 8%;
-    }
-
-    .bot-right {
-      height: 8.8%;
-      bottom: 8%;
-      right: 7%;
-    }
+    .top-left  { height: 7.5%; top: 9%; left: 8%; }
+    .top-right { height: 7.5%; top: 9%; right: 7%; }
+    .bot-left  { height: 8.8%; bottom: 8%; left: 8%; }
+    .bot-right { height: 8.8%; bottom: 8%; right: 7%; }
 
     .back-text {
       position: absolute;
-      top: 50%;
-      left: 50%;
+      top: 50%; left: 50%;
       transform: translate(-50%, -50%);
       display: flex;
       gap: 0.5rem;
@@ -143,12 +111,25 @@
       max-width: 100%;
       height: auto;
     }
+
+    /* Hover or temporary JS-based flip */
+    @media (hover: hover) and (pointer: fine) {
+      .card-container:hover .card,
+      .card-container.flip .card {
+        transform: rotateY(180deg);
+      }
+    }
+
+    @media (hover: none) {
+      .card-container.flip .card {
+        transform: rotateY(180deg);
+      }
+    }
   </style>
 </head>
 <body>
   <div class="card-container" id="card-container">
     <div class="card" id="card">
-      <!-- FRONT -->
       <div class="card-face front">
         <img src="/card-front.webp" alt="Card Front" class="card-bg" />
         <picture class="logo-overlay">
@@ -161,7 +142,6 @@
         <img src="/corner bottom-right.svg" class="corner bot-right"   alt="" />
       </div>
 
-      <!-- BACK -->
       <div class="card-face back">
         <img src="/card-back.webp" alt="Card Back" class="card-bg" />
         <div class="back-text desktop">
@@ -187,16 +167,11 @@
   </div>
 
   <script>
-    const card = document.getElementById('card');
     const container = document.getElementById('card-container');
 
     container.addEventListener('click', () => {
-      const flipped = card.classList.toggle('is-flipped');
-      container.classList.toggle('manual-flip', flipped);
-    });
-
-    container.addEventListener('mouseleave', () => {
-      container.classList.remove('manual-flip');
+      container.classList.add('flip');
+      setTimeout(() => container.classList.remove('flip'), 800); // match the CSS transition
     });
   </script>
 </body>
