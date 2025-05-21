@@ -109,12 +109,13 @@
       z-index: 2;
     }
 
-    .back-text.desktop { flex-direction: row; }
-    .back-text.mobile  { display: none; flex-direction: column; }
+    .back-text.desktop {
+      flex-direction: row;
+    }
 
-    @media (max-width: 600px) {
-      .back-text.desktop { display: none; }
-      .back-text.mobile  { display: flex; }
+    .back-text.mobile {
+      display: none;
+      flex-direction: column;
     }
 
     .back-text picture,
@@ -122,6 +123,28 @@
       display: block;
       max-width: 100%;
       height: auto;
+    }
+
+    @media (max-width: 600px) {
+      .back-text.desktop { display: none; }
+      .back-text.mobile  {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .card {
+        aspect-ratio: 1006 / 1597;
+        max-width: 350px;
+      }
+      .logo-overlay {
+        width: 15%;
+      }
+      .top-left, .top-right {
+        height: 5.5%;
+      }
+      .bot-left, .bot-right {
+        height: 6.5%;
+      }
     }
   </style>
 </head>
@@ -183,7 +206,6 @@
       card.classList.toggle('is-flipped');
     });
 
-    // Add .rotate-mobile if in portrait
     function updateOrientation() {
       const isPortrait = window.innerHeight > window.innerWidth;
       card.classList.toggle('rotate-mobile', isPortrait);
