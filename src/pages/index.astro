@@ -23,8 +23,8 @@
     }
 
     .card {
-      width: 90vw;
-      max-width: 600px;
+      width: 40vw;
+      max-width: 300px;
       aspect-ratio: 1597 / 1006;
       position: relative;
       transform-style: preserve-3d;
@@ -106,7 +106,13 @@
       .back-text.mobile  { display: flex; }
       .card {
         aspect-ratio: 1006 / 1597;
-        max-width: 400px;
+        max-width: 200px;
+      }
+      .card.is-flipped {
+        transform: rotateX(180deg);
+      }
+      .card-face.back {
+        transform: rotateX(180deg);
       }
     }
 
@@ -158,7 +164,6 @@
       </div>
     </div>
   </div>
-
   <script>
     const card = document.getElementById('card');
     let clicked = false;
