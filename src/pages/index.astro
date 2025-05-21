@@ -107,8 +107,15 @@
       z-index: 2;
     }
 
-    .back-text.desktop { flex-direction: row; }
-    .back-text.mobile  { display: none; flex-direction: column; }
+    .back-text.desktop {
+      flex-direction: row;
+      display: flex;
+    }
+
+    .back-text.mobile {
+      display: none;
+      flex-direction: column;
+    }
 
     .back-text picture,
     .back-text img {
@@ -123,8 +130,8 @@
 
       /* 🔧 INDIVIDUAL CORNER SCALE ADJUSTMENTS */
       .top-left  { height: 4.5%; }
-      .top-right { height: 4.5%; }
-      .bot-left  { height: 5.5%; }
+      .top-right { height: 2.5%; }
+      .bot-left  { height: 2.5%; }
       .bot-right { height: 5.5%; }
 
       /* 🔧 LOGO SIZE ADJUSTMENT ON MOBILE */
