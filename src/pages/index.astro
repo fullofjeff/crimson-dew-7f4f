@@ -48,7 +48,8 @@
     }
 
     .card-bg {
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       display: block;
     }
@@ -62,7 +63,6 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      transform-origin: center center;
       width: 20%;
       max-width: none;
       height: auto;
@@ -101,42 +101,25 @@
     .back-text.desktop { flex-direction: row; }
     .back-text.mobile  { display: none; flex-direction: column; }
 
+    @media (max-width: 600px) {
+      .back-text.desktop { display: none; }
+      .back-text.mobile  { display: flex; }
+      .card {
+        aspect-ratio: 1006 / 1597;
+        max-width: 400px;
+        transform: rotate(90deg);
+      }
+
+      .card.is-flipped {
+        transform: rotate(90deg) rotateY(180deg);
+      }
+    }
+
     .back-text picture,
     .back-text img {
       display: block;
       max-width: 100%;
       height: auto;
-    }
-
-    @media (max-width: 600px) {
-      .back-text.desktop { display: none; }
-
-      .back-text.mobile {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 0.4rem;
-        padding: 1rem 0;
-      }
-
-      .back-text.mobile picture {
-        max-width: 60%;
-      }
-
-      .card {
-        aspect-ratio: 1006 / 1597;
-        max-width: 350px;
-      }
-
-      .logo-overlay {
-        width: 15%;
-      }
-
-      .top-left  { height: 2.6%; }
-      .top-right { height: 2.4%; }
-      .bot-left  { height: 2.9%; }
-      .bot-right { height: 2.6%; }
     }
   </style>
 </head>
@@ -150,10 +133,10 @@
           <source type="image/webp" srcset="/logo-overlay-rough.webp" />
           <img src="/logo-overlay-rough.svg" alt="Logo" />
         </picture>
-        <img src="/corner top-left.svg"     class="corner top-left"    alt="" />
-        <img src="/corner top-right.svg"    class="corner top-right"   alt="" />
-        <img src="/corner bottom-left.svg"  class="corner bot-left"    alt="" />
-        <img src="/corner bottom-right.svg" class="corner bot-right"   alt="" />
+        <img src="/corner top-left.svg" class="corner top-left" alt="" />
+        <img src="/corner top-right.svg" class="corner top-right" alt="" />
+        <img src="/corner bottom-left.svg" class="corner bot-left" alt="" />
+        <img src="/corner bottom-right.svg" class="corner bot-right" alt="" />
       </div>
 
       <!-- BACK -->
