@@ -90,7 +90,8 @@
 
     .back-text {
       position: absolute;
-      top: 50%; left: 50%;
+      top: 50%;
+      left: 50%;
       transform: translate(-50%, -50%);
       display: flex;
       gap: 0.5rem;
@@ -161,13 +162,8 @@
   <script>
     const card = document.getElementById('card');
 
-    let lastMove = 0;
-    card.addEventListener('mousemove', (e) => {
-      const now = Date.now();
-      if (now - lastMove < 50) {
-        card.classList.add('is-flipped');
-      }
-      lastMove = now;
+    card.addEventListener('mouseenter', () => {
+      card.classList.add('is-flipped');
     });
 
     card.addEventListener('click', () => {
