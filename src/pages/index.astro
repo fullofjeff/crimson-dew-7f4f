@@ -161,17 +161,19 @@
 
   <script>
     const card = document.getElementById('card');
+    let clicked = false;
 
     card.addEventListener('mouseenter', () => {
-      card.classList.add('is-flipped');
-    });
-
-    card.addEventListener('click', () => {
-      card.classList.add('is-flipped');
+      if (!clicked) card.classList.add('is-flipped');
     });
 
     card.addEventListener('mouseleave', () => {
-      card.classList.remove('is-flipped');
+      if (!clicked) card.classList.remove('is-flipped');
+    });
+
+    card.addEventListener('click', () => {
+      clicked = !clicked;
+      card.classList.toggle('is-flipped');
     });
   </script>
 </body>
