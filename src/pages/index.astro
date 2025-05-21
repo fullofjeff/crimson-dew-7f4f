@@ -83,10 +83,10 @@
       pointer-events: none;
     }
 
-    .top-left  { height: 7.5%; top: 9%; left: 8%; }
-    .top-right { height: 7.5%; top: 9%; right: 7%; }
-    .bot-left  { height: 8.8%; bottom: 8%; left: 8%; }
-    .bot-right { height: 8.8%; bottom: 8%; right: 7%; }
+    .corner.top-left  { height: 7.5%; top: 9%; left: 8%; }
+    .corner.top-right { height: 7.5%; top: 9%; right: 7%; }
+    .corner.bot-left  { height: 8.8%; bottom: 8%; left: 8%; }
+    .corner.bot-right { height: 8.8%; bottom: 8%; right: 7%; }
 
     .back-text {
       position: absolute;
@@ -104,6 +104,7 @@
     @media (max-width: 600px) {
       .back-text.desktop { display: none; }
       .back-text.mobile  { display: flex; }
+
       .card {
         aspect-ratio: 1006 / 1597;
         max-width: 400px;
@@ -112,6 +113,23 @@
 
       .card.is-flipped {
         transform: rotate(90deg) rotateY(180deg);
+      }
+
+      /* Scale mobile corners */
+      .corner.top-left  { height: 6%; }
+      .corner.top-right { height: 6%; }
+      .corner.bot-left  { height: 7.5%; }
+      .corner.bot-right { height: 7.5%; }
+
+      /* Scale mobile logo */
+      .logo-overlay {
+        width: 15%;
+      }
+
+      /* Scale back mobile words/suits */
+      .back-text.mobile img {
+        width: 70%;
+        margin: 0 auto;
       }
     }
 
@@ -133,10 +151,10 @@
           <source type="image/webp" srcset="/logo-overlay-rough.webp" />
           <img src="/logo-overlay-rough.svg" alt="Logo" />
         </picture>
-        <img src="/corner top-left.svg" class="corner top-left" alt="" />
-        <img src="/corner top-right.svg" class="corner top-right" alt="" />
-        <img src="/corner bottom-left.svg" class="corner bot-left" alt="" />
-        <img src="/corner bottom-right.svg" class="corner bot-right" alt="" />
+        <img src="/corner top-left.svg"     class="corner top-left"    alt="" />
+        <img src="/corner top-right.svg"    class="corner top-right"   alt="" />
+        <img src="/corner bottom-left.svg"  class="corner bot-left"    alt="" />
+        <img src="/corner bottom-right.svg" class="corner bot-right"   alt="" />
       </div>
 
       <!-- BACK -->
