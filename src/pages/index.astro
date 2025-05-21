@@ -1,5 +1,3 @@
----
----
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,8 +21,8 @@
     }
 
     .card {
-      width: 40vw;
-      max-width: 300px;
+      width: 90vw;
+      max-width: 600px;
       aspect-ratio: 1597 / 1006;
       position: relative;
       transform-style: preserve-3d;
@@ -83,10 +81,33 @@
       pointer-events: none;
     }
 
-    .top-left  { height: 7.5%; top: 9%; left: 8%; }
-    .top-right { height: 7.5%; top: 9%; right: 7%; }
-    .bot-left  { height: 8.8%; bottom: 8%; left: 8%; }
-    .bot-right { height: 8.8%; bottom: 8%; right: 7%; }
+    .top-left {
+      height: 7.5%;
+      top: 9%;
+      left: 8%;
+      object-position: center;
+    }
+
+    .top-right {
+      height: 7.5%;
+      top: 9%;
+      right: 7%;
+      object-position: center;
+    }
+
+    .bot-left {
+      height: 8.8%;
+      bottom: 8%;
+      left: 8%;
+      object-position: center bottom;
+    }
+
+    .bot-right {
+      height: 8.8%;
+      bottom: 8%;
+      right: 7%;
+      object-position: center;
+    }
 
     .back-text {
       position: absolute;
@@ -106,13 +127,7 @@
       .back-text.mobile  { display: flex; }
       .card {
         aspect-ratio: 1006 / 1597;
-        max-width: 200px;
-      }
-      .card.is-flipped {
-        transform: rotateX(180deg);
-      }
-      .card-face.back {
-        transform: rotateX(180deg);
+        max-width: 400px;
       }
     }
 
@@ -121,6 +136,13 @@
       display: block;
       max-width: 100%;
       height: auto;
+    }
+
+    /* ✅ Flip on mobile portrait */
+    @media (max-width: 768px) and (max-aspect-ratio: 3/4) {
+      .card {
+        transform: rotateY(180deg);
+      }
     }
   </style>
 </head>
@@ -144,26 +166,27 @@
       <div class="card-face back">
         <img src="/card-back.webp" alt="Card Back" class="card-bg" />
         <div class="back-text desktop">
-          <picture><source type="image/webp" srcset="/suit-spade.webp"><img src="/suit-spade.svg" alt="" /></picture>
+          <picture><source type="image/webp" srcset="/suit-spade.webp"><img src="/suit-spade.svg" /></picture>
           <picture><source type="image/webp" srcset="/wonder.webp"><img src="/wonder.svg" alt="WONDER" /></picture>
-          <picture><source type="image/webp" srcset="/suit-diamond.webp"><img src="/suit-diamond.svg" alt="" /></picture>
+          <picture><source type="image/webp" srcset="/suit-diamond.webp"><img src="/suit-diamond.svg" /></picture>
           <picture><source type="image/webp" srcset="/dream.webp"><img src="/dream.svg" alt="DREAM" /></picture>
-          <picture><source type="image/webp" srcset="/suit-club.webp"><img src="/suit-club.svg" alt="" /></picture>
+          <picture><source type="image/webp" srcset="/suit-club.webp"><img src="/suit-club.svg" /></picture>
           <picture><source type="image/webp" srcset="/believe.webp"><img src="/believe.svg" alt="BELIEVE" /></picture>
-          <picture><source type="image/webp" srcset="/suit-heart.webp"><img src="/suit-heart.svg" alt="" /></picture>
+          <picture><source type="image/webp" srcset="/suit-heart.webp"><img src="/suit-heart.svg" /></picture>
         </div>
         <div class="back-text mobile">
-          <picture><source type="image/webp" srcset="/suit-spade.webp"><img src="/suit-spade.svg" alt="" /></picture>
+          <picture><source type="image/webp" srcset="/suit-spade.webp"><img src="/suit-spade.svg" /></picture>
           <picture><source type="image/webp" srcset="/wonder.webp"><img src="/wonder.svg" alt="WONDER" /></picture>
-          <picture><source type="image/webp" srcset="/suit-diamond.webp"><img src="/suit-diamond.svg" alt="" /></picture>
+          <picture><source type="image/webp" srcset="/suit-diamond.webp"><img src="/suit-diamond.svg" /></picture>
           <picture><source type="image/webp" srcset="/dream.webp"><img src="/dream.svg" alt="DREAM" /></picture>
-          <picture><source type="image/webp" srcset="/suit-club.webp"><img src="/suit-club.svg" alt="" /></picture>
+          <picture><source type="image/webp" srcset="/suit-club.webp"><img src="/suit-club.svg" /></picture>
           <picture><source type="image/webp" srcset="/believe.webp"><img src="/believe.svg" alt="BELIEVE" /></picture>
-          <picture><source type="image/webp" srcset="/suit-heart.webp"><img src="/suit-heart.svg" alt="" /></picture>
+          <picture><source type="image/webp" srcset="/suit-heart.webp"><img src="/suit-heart.svg" /></picture>
         </div>
       </div>
     </div>
   </div>
+
   <script>
     const card = document.getElementById('card');
     let clicked = false;
@@ -177,7 +200,7 @@
     });
 
     card.addEventListener('click', () => {
-      clicked = !clicked;
+      clicked = true;
       card.classList.toggle('is-flipped');
     });
   </script>
