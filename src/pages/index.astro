@@ -121,14 +121,19 @@
       .back-text.desktop { display: none; }
       .back-text.mobile  { display: flex; }
 
+      /* Mobile corner size adjustments */
       .top-left  { height: 4.5%; }
       .top-right { height: 2.5%; }
       .bot-left  { height: 2.5%; }
       .bot-right { height: 5.5%; }
 
+      /* Mobile logo scale */
+      .logo-overlay { width: 15%; }
+
+      /* Mobile back text image size */
       .back-text.mobile picture img {
         width: 12%;
-        margin: 0.25rem auto;
+        margin: 0.3rem 0;
       }
     }
   </style>
@@ -136,6 +141,7 @@
 <body>
   <div class="card-container">
     <div class="card" id="card">
+      <!-- FRONT -->
       <div class="card-face front">
         <img src="/card-front.webp" alt="Card Front" class="card-bg" />
         <picture class="logo-overlay">
@@ -148,25 +154,26 @@
         <img src="/corner bottom-right.svg" class="corner bot-right"   alt="" />
       </div>
 
+      <!-- BACK -->
       <div class="card-face back">
         <img src="/card-back.webp" alt="Card Back" class="card-bg" />
         <div class="back-text desktop">
-          <picture><img src="/suit-spade.svg" alt="" /></picture>
-          <picture><img src="/wonder.svg" alt="WONDER" /></picture>
-          <picture><img src="/suit-diamond.svg" alt="" /></picture>
-          <picture><img src="/dream.svg" alt="DREAM" /></picture>
-          <picture><img src="/suit-club.svg" alt="" /></picture>
-          <picture><img src="/believe.svg" alt="BELIEVE" /></picture>
-          <picture><img src="/suit-heart.svg" alt="" /></picture>
+          <picture><source type="image/webp" srcset="/suit-spade.webp"><img src="/suit-spade.svg" alt="" /></picture>
+          <picture><source type="image/webp" srcset="/wonder.webp"><img src="/wonder.svg" alt="WONDER" /></picture>
+          <picture><source type="image/webp" srcset="/suit-diamond.webp"><img src="/suit-diamond.svg" alt="" /></picture>
+          <picture><source type="image/webp" srcset="/dream.webp"><img src="/dream.svg" alt="DREAM" /></picture>
+          <picture><source type="image/webp" srcset="/suit-club.webp"><img src="/suit-club.svg" alt="" /></picture>
+          <picture><source type="image/webp" srcset="/believe.webp"><img src="/believe.svg" alt="BELIEVE" /></picture>
+          <picture><source type="image/webp" srcset="/suit-heart.webp"><img src="/suit-heart.svg" alt="" /></picture>
         </div>
         <div class="back-text mobile">
-          <picture><img src="/suit-spade.svg" alt="" /></picture>
-          <picture><img src="/wonder.svg" alt="WONDER" /></picture>
-          <picture><img src="/suit-diamond.svg" alt="" /></picture>
-          <picture><img src="/dream.svg" alt="DREAM" /></picture>
-          <picture><img src="/suit-club.svg" alt="" /></picture>
-          <picture><img src="/believe.svg" alt="BELIEVE" /></picture>
-          <picture><img src="/suit-heart.svg" alt="" /></picture>
+          <picture><source type="image/webp" srcset="/suit-spade.webp"><img src="/suit-spade.svg" alt="" /></picture>
+          <picture><source type="image/webp" srcset="/wonder.webp"><img src="/wonder.svg" alt="WONDER" /></picture>
+          <picture><source type="image/webp" srcset="/suit-diamond.webp"><img src="/suit-diamond.svg" alt="" /></picture>
+          <picture><source type="image/webp" srcset="/dream.webp"><img src="/dream.svg" alt="DREAM" /></picture>
+          <picture><source type="image/webp" srcset="/suit-club.webp"><img src="/suit-club.svg" alt="" /></picture>
+          <picture><source type="image/webp" srcset="/believe.webp"><img src="/believe.svg" alt="BELIEVE" /></picture>
+          <picture><source type="image/webp" srcset="/suit-heart.webp"><img src="/suit-heart.svg" alt="" /></picture>
         </div>
       </div>
     </div>
