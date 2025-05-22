@@ -107,15 +107,8 @@
       z-index: 2;
     }
 
-    .back-text.desktop {
-      flex-direction: row;
-      display: flex;
-    }
-
-    .back-text.mobile {
-      display: none;
-      flex-direction: column;
-    }
+    .back-text.desktop { flex-direction: row; }
+    .back-text.mobile  { display: none; flex-direction: column; align-items: center; justify-content: center; }
 
     .back-text picture,
     .back-text img {
@@ -128,19 +121,14 @@
       .back-text.desktop { display: none; }
       .back-text.mobile  { display: flex; }
 
-      /* 🔧 INDIVIDUAL CORNER SCALE ADJUSTMENTS */
       .top-left  { height: 4.5%; }
       .top-right { height: 2.5%; }
       .bot-left  { height: 2.5%; }
       .bot-right { height: 5.5%; }
 
-      /* 🔧 LOGO SIZE ADJUSTMENT ON MOBILE */
-      .logo-overlay { width: 15%; }
-
-      /* 🔧 BACK TEXT SIZE ON MOBILE */
       .back-text.mobile picture img {
         width: 12%;
-        margin: 0 auto;
+        margin: 0.25rem auto;
       }
     }
   </style>
@@ -148,7 +136,6 @@
 <body>
   <div class="card-container">
     <div class="card" id="card">
-      <!-- FRONT -->
       <div class="card-face front">
         <img src="/card-front.webp" alt="Card Front" class="card-bg" />
         <picture class="logo-overlay">
@@ -161,7 +148,6 @@
         <img src="/corner bottom-right.svg" class="corner bot-right"   alt="" />
       </div>
 
-      <!-- BACK -->
       <div class="card-face back">
         <img src="/card-back.webp" alt="Card Back" class="card-bg" />
         <div class="back-text desktop">
